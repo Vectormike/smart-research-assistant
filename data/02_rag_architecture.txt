@@ -1,0 +1,53 @@
+Retrieval-Augmented Generation (RAG) Architecture
+
+Overview:
+RAG combines retrieval-based and generation-based approaches to improve language model outputs by incorporating external knowledge.
+
+Core Components:
+
+1. Retriever
+- Dense Retrieval: Uses embeddings to find relevant documents
+- Sparse Retrieval: Uses traditional IR methods (BM25, TF-IDF)
+- Hybrid Retrieval: Combines both approaches
+
+2. Generator
+- Large Language Models (LLMs)
+- Context-aware generation
+- Factual consistency
+
+3. Knowledge Base
+- Document storage
+- Vector database
+- Indexing mechanisms
+
+Implementation Steps:
+1. Document Processing
+   - Chunking
+   - Embedding generation
+   - Indexing
+
+2. Query Processing
+   - Query understanding
+   - Retrieval
+   - Context assembly
+
+3. Generation
+   - Context integration
+   - Response generation
+   - Fact verification
+
+Advantages:
+- Reduced hallucinations
+- Up-to-date information
+- Source attribution
+- Cost-effective
+
+Challenges:
+- Retrieval quality
+- Context window limitations
+- Computational overhead
+- Knowledge base maintenance
+
+References:
+- "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (Lewis et al., 2020)
+- "REPLUG: Retrieval-Augmented Black-Box Language Models" (Shi et al., 2023) 

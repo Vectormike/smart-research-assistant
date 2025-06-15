@@ -1,0 +1,69 @@
+Research Notes: Evaluation Metrics
+Date: 2024-03-24
+
+Today I researched evaluation metrics for our RAG system. We need both automated metrics and human evaluation to properly assess performance.
+
+Retrieval Metrics I'll implement:
+
+1. Precision and Recall
+   - Precision@k: How many of top k results are relevant
+   - Recall@k: How many relevant docs we found in top k
+   - F1 Score: Balance between precision and recall
+   - Need to define what "relevant" means for our use case
+
+2. MRR (Mean Reciprocal Rank)
+   - Measures how early we find the first relevant result
+   - Formula: MRR = (1/|Q|) * sum(1/rank_i)
+   - Good for when we need at least one good result
+   - Will implement this first
+
+3. nDCG (Normalized Discounted Cumulative Gain)
+   - Takes ranking into account
+   - More relevant docs should be higher in results
+   - Complex but more accurate
+   - Might add this later
+
+Generation Metrics to track:
+
+1. ROUGE
+   - ROUGE-N: Word overlap
+   - ROUGE-L: Longest common subsequence
+   - Good for summarization tasks
+   - Not sure if relevant for our use case
+
+2. BLEU
+   - Common in translation
+   - Might be too strict for our needs
+   - Will probably skip this
+
+3. Semantic Similarity
+   - BERTScore looks promising
+   - METEOR might be good too
+   - Need to test which works best for our domain
+
+Human Evaluation Plan:
+1. Create evaluation rubric
+2. Define evaluation criteria:
+   - Relevance
+   - Fluency
+   - Factual consistency
+   - Source attribution
+3. Set up evaluation pipeline
+4. Create evaluation dataset
+
+Questions to answer:
+1. What's the right balance of automated vs human evaluation?
+2. How often should we run evaluations?
+3. What's our baseline for comparison?
+4. How to handle edge cases?
+
+Next steps:
+- Implement basic retrieval metrics
+- Set up human evaluation framework
+- Create test dataset
+- Define evaluation schedule
+
+References:
+- Lin (2004) - ROUGE paper
+- Papineni et al. (2002) - BLEU paper
+- Zhang et al. (2020) - BERTScore paper 

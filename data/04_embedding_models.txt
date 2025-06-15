@@ -1,0 +1,52 @@
+Research Notes: Embedding Models
+Date: 2024-03-23
+
+Today I explored different embedding models for our RAG system. The choice of embedding model is crucial as it directly affects retrieval quality.
+
+Models I tested:
+
+1. OpenAI Embeddings
+   - text-embedding-3-small: Fast, good quality
+   - text-embedding-3-large: Better but slower
+   - text-embedding-ada-002: Older version, still good
+   - Decided to use text-embedding-3-small for now
+
+2. Sentence Transformers
+   - all-MiniLM-L6-v2: Good balance of speed/quality
+   - all-mpnet-base-v2: Better quality, slower
+   - multi-qa-mpnet-base-dot-v1: Specialized for QA
+   - Might try these if we need to run locally
+
+3. BERT-based Models
+   - BERT: Too slow for our needs
+   - RoBERTa: Better but still slow
+   - DistilBERT: Faster but less accurate
+   - Probably won't use these
+
+Key findings:
+- Higher dimensions (1024-1536) give better quality but are slower
+- Lower dimensions (384-768) are faster but less accurate
+- Need to balance speed vs quality
+- Batch processing is crucial for performance
+
+Implementation considerations:
+- Need to implement proper error handling
+- Should add caching layer
+- Must handle rate limits for OpenAI API
+- Should monitor embedding quality
+
+Questions to explore:
+1. How do different models perform on our specific domain?
+2. What's the impact of chunk size on embedding quality?
+3. How to handle multi-language content?
+4. What's the best way to update embeddings when documents change?
+
+Next steps:
+- Set up embedding pipeline
+- Implement caching
+- Create evaluation framework
+- Test with our actual documents
+
+References:
+- Reimers & Gurevych (2019) - Sentence-BERT paper
+- Conneau et al. (2017) - Universal Sentence Encoder paper 

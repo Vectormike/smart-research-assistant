@@ -1,0 +1,30 @@
+Research Notes: Attention Mechanisms
+Date: 2024-03-20
+
+Today I studied how attention mechanisms work in transformers. The key insight is that they help models focus on relevant parts of the input, similar to how humans pay attention to specific words when understanding a sentence.
+
+Key findings:
+- The original paper "Attention Is All You Need" (2017) introduced self-attention
+- Instead of processing words sequentially like RNNs, attention looks at all words at once
+- Each word gets three vectors: Query (what we're looking for), Key (what we have), Value (what we return)
+- The attention formula is: Attention(Q,K,V) = softmax(QK^T/sqrt(d_k))V
+- Multi-head attention lets the model focus on different aspects simultaneously
+
+Interesting implementation details:
+- The sqrt(d_k) scaling helps prevent softmax from entering regions with small gradients
+- Positional encoding is added to help the model understand word order
+- The number of attention heads is a hyperparameter (usually 8 or 16)
+
+Questions to explore:
+1. How does attention help with long-range dependencies?
+2. What's the computational complexity of self-attention?
+3. How do different attention variants (e.g., local attention) affect performance?
+
+Next steps:
+- Look into efficient attention mechanisms for longer sequences
+- Study how attention weights can be visualized for interpretability
+- Research recent improvements like flash attention
+
+References:
+- Vaswani et al. (2017) - The original transformer paper
+- Devlin et al. (2019) - BERT paper for practical applications 

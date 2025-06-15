@@ -1,0 +1,60 @@
+Research Notes: Vector Databases
+Date: 2024-03-22
+
+Today I researched vector databases for our RAG implementation. These are crucial for efficient similarity search in high-dimensional spaces. Here's what I learned:
+
+Tried out several options:
+
+1. ChromaDB
+   - Easiest to get started with
+   - Good Python API
+   - Can run locally or in-memory
+   - Perfect for prototyping
+   - Decided to use this for initial implementation
+
+2. Pinecone
+   - Cloud-based solution
+   - Great for production
+   - Expensive for our scale
+   - Might consider later if we need to scale
+
+3. Weaviate
+   - More complex but powerful
+   - Good for multi-modal data
+   - Overkill for our needs
+   - Might revisit if we add images later
+
+4. Milvus
+   - Very performant
+   - Complex setup
+   - Good for large-scale deployments
+   - Not needed for our current scale
+
+Important concepts I need to understand better:
+- HNSW index: Seems to be the best balance of speed and accuracy
+- IVF index: Good for large datasets but less accurate
+- Product Quantization: Helps with memory usage
+- Cosine similarity vs Euclidean distance: When to use which?
+
+Performance considerations:
+- Query latency is crucial for good UX
+- Memory usage can be high with large datasets
+- Need to monitor index build time
+- Should implement proper caching
+
+Implementation plan:
+1. Start with ChromaDB
+2. Use HNSW index
+3. Implement proper chunking
+4. Add monitoring
+5. Consider caching layer
+
+Questions to research:
+- How to handle updates to the knowledge base?
+- What's the best way to implement versioning?
+- How to handle failed queries gracefully?
+- What metrics should we track?
+
+References:
+- Malkov & Yashunin (2018) - HNSW paper
+- Jégou et al. (2011) - Product Quantization paper 
