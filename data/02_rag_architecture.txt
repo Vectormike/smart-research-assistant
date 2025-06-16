@@ -50,4 +50,62 @@ Challenges:
 
 References:
 - "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (Lewis et al., 2020)
-- "REPLUG: Retrieval-Augmented Black-Box Language Models" (Shi et al., 2023) 
+- "REPLUG: Retrieval-Augmented Black-Box Language Models" (Shi et al., 2023)
+
+Research Notes: RAG Architecture
+Date: 2024-03-21
+
+Spent today understanding RAG (Retrieval-Augmented Generation) architecture, focusing on using Llama with Ollama for local deployment. It's fascinating how we can combine traditional information retrieval with local LLMs to create more factual and up-to-date responses.
+
+My understanding:
+- RAG was introduced in a 2020 paper by Lewis et al.
+- The main idea is to use a retriever to find relevant documents and then use them to augment the LLM's response
+- This helps reduce hallucinations and allows the model to access up-to-date information
+- Using Ollama gives us full control and no API costs
+
+Components I need to implement:
+1. Retriever
+   - Using Sentence Transformers for embeddings
+   - ChromaDB for vector storage
+   - Need to implement proper chunking strategy
+   - Should consider hybrid retrieval (BM25 + embeddings)
+
+2. Generator (Llama via Ollama)
+   - Using Llama-2-7b for generation
+   - Need to figure out best way to incorporate retrieved context
+   - Should experiment with different prompting strategies
+   - Need to handle context window limitations
+   - Must implement proper error handling for Ollama
+
+3. Knowledge Base
+   - Vector database for storing embeddings
+   - Need to implement proper chunking strategy
+   - Should consider metadata storage for better retrieval
+   - Need to handle document updates efficiently
+
+Implementation challenges I've identified:
+- How to handle long documents effectively?
+- What's the best chunking strategy?
+- How to ensure retrieved context is actually relevant?
+- How to handle conflicting information from different sources?
+- How to optimize GPU memory usage?
+- How to handle Ollama API errors and retries?
+
+Experiments to try:
+1. Compare different Llama models (7b vs 13b)
+2. Test various chunking strategies
+3. Evaluate different retrieval methods
+4. Measure impact of context length on response quality
+5. Profile memory usage and optimize
+
+Next steps:
+- Set up basic RAG pipeline with Ollama
+- Implement document processing pipeline
+- Create evaluation framework
+- Start with simple retrieval methods and iterate
+- Set up proper error handling and monitoring
+
+References:
+- Lewis et al. (2020) - Original RAG paper
+- Llama 2 paper (2023) - For understanding model capabilities
+- Ollama documentation - For implementation details 
