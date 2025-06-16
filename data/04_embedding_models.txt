@@ -1,52 +1,57 @@
 Research Notes: Embedding Models
 Date: 2024-03-23
 
-Today I explored different embedding models for our RAG system. The choice of embedding model is crucial as it directly affects retrieval quality.
+Today I explored different embedding models for our RAG system, focusing on local options since we want to avoid API dependencies. The choice of embedding model is crucial as it directly affects retrieval quality.
 
 Models I tested:
 
-1. OpenAI Embeddings
-   - text-embedding-3-small: Fast, good quality
-   - text-embedding-3-large: Better but slower
-   - text-embedding-ada-002: Older version, still good
-   - Decided to use text-embedding-3-small for now
-
-2. Sentence Transformers
-   - all-MiniLM-L6-v2: Good balance of speed/quality
-   - all-mpnet-base-v2: Better quality, slower
+1. Local Embedding Models
+   - all-MiniLM-L6-v2: Fast, good quality, 384 dimensions
+   - all-mpnet-base-v2: Better quality, slower, 768 dimensions
    - multi-qa-mpnet-base-dot-v1: Specialized for QA
-   - Might try these if we need to run locally
+   - Decided to use all-MiniLM-L6-v2 for now - good balance of speed/quality
 
-3. BERT-based Models
+2. BERT-based Models
    - BERT: Too slow for our needs
    - RoBERTa: Better but still slow
    - DistilBERT: Faster but less accurate
-   - Probably won't use these
+   - Might try DistilBERT if we need even faster inference
+
+3. Llama-based Embeddings
+   - Llama-2-7b: Good for both embeddings and generation
+   - Need to test if it's worth using same model for both
+   - Might be overkill for just embeddings
+   - Will stick with specialized embedding models for now
 
 Key findings:
-- Higher dimensions (1024-1536) give better quality but are slower
-- Lower dimensions (384-768) are faster but less accurate
+- Higher dimensions (768) give better quality but are slower
+- Lower dimensions (384) are faster but less accurate
 - Need to balance speed vs quality
 - Batch processing is crucial for performance
+- Local models give us full control and no API costs
 
 Implementation considerations:
 - Need to implement proper error handling
 - Should add caching layer
-- Must handle rate limits for OpenAI API
+- Must handle GPU memory efficiently
 - Should monitor embedding quality
+- Need to implement proper model loading/unloading
 
 Questions to explore:
 1. How do different models perform on our specific domain?
 2. What's the impact of chunk size on embedding quality?
 3. How to handle multi-language content?
 4. What's the best way to update embeddings when documents change?
+5. How to optimize GPU memory usage?
 
 Next steps:
-- Set up embedding pipeline
+- Set up embedding pipeline with all-MiniLM-L6-v2
 - Implement caching
 - Create evaluation framework
 - Test with our actual documents
+- Profile memory usage and optimize
 
 References:
 - Reimers & Gurevych (2019) - Sentence-BERT paper
-- Conneau et al. (2017) - Universal Sentence Encoder paper 
+- Conneau et al. (2017) - Universal Sentence Encoder paper
+- Llama 2 paper (2023) - For understanding Llama capabilities 
