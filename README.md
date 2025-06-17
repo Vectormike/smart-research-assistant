@@ -9,7 +9,6 @@ A Python project for managing and querying research notes using Retrieval-Augmen
 ├── config/         # Configuration files
 ├── data/          # Data storage
 ├── embeddings/    # Vector embeddings
-├── models/        # Model-related code
 ├── src/           # Source code
 └── utils/         # Utility functions
 ```
