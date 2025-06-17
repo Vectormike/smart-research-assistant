@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     
     # Ollama settings
     OLLAMA_BASE_URL: str = "http://localhost:11434"
-    OLLAMA_MODEL: str = "llama2"
+    OLLAMA_MODEL: str = "llama3"
     OLLAMA_TIMEOUT: int = 120
     OLLAMA_MAX_RETRIES: int = 3
     
